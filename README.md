@@ -1,1 +1,1 @@
-# kafka-starter-project
+# sms-gateway
