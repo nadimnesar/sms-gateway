@@ -29,7 +29,7 @@ flowchart TB
         G1["Critical - 4 Consumers"]
         G2["High - 3 Consumers"]
         G3["Medium - 2 Consumers"]
-        G4["Low - 2 Consumer"]
+        G4["Low - 2 Consumers"]
     end
 
     S["Dispatcher"]
