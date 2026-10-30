@@ -25,8 +25,8 @@ public class MediumPriorityConsumer {
             concurrency = "2"
     )
     public void consumeInfo(SmsMessage message) {
-        log.info("[MEDIUM PRIORITY CONSUMER] Received INFO message ID: {} for {}",
-                message.getMessageId(), message.getRecipientPhoneNumber());
+        log.info("[MEDIUM PRIORITY CONSUMER] Received INFO message ID: {} [Priority: {}] for {}",
+                message.getMessageId(), message.getPriority(), message.getRecipientPhoneNumber());
         dispatcherService.dispatch(message);
     }
 }

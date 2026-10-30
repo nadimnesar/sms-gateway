@@ -17,8 +17,8 @@ public class GrameenphoneClient implements TelecomClient {
 
     @Override
     public boolean sendSms(SmsMessage message) {
-        log.info("[GP-GATEWAY] Delivering SMS ID: {} to {} via Grameenphone: '{}'",
-                message.getMessageId(), message.getRecipientPhoneNumber(), message.getMessageBody());
+        log.info("[GP-GATEWAY] Delivering [{}] SMS ID: {} to {} via Grameenphone: '{}'",
+                message.getPriority(), message.getMessageId(), message.getRecipientPhoneNumber(), message.getMessageBody());
         return true;
     }
 }

@@ -17,8 +17,8 @@ public class RobiClient implements TelecomClient {
 
     @Override
     public boolean sendSms(SmsMessage message) {
-        log.info("[ROBI-GATEWAY] Delivering SMS ID: {} to {} via Robi Axiata: '{}'",
-                message.getMessageId(), message.getRecipientPhoneNumber(), message.getMessageBody());
+        log.info("[ROBI-GATEWAY] Delivering [{}] SMS ID: {} to {} via Robi Axiata: '{}'",
+                message.getPriority(), message.getMessageId(), message.getRecipientPhoneNumber(), message.getMessageBody());
         return true;
     }
 }

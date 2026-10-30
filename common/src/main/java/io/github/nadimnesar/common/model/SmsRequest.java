@@ -1,5 +1,6 @@
 package io.github.nadimnesar.common.model;
 
+import io.github.nadimnesar.common.enums.Priority;
 import io.github.nadimnesar.common.enums.SmsType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,4 +15,5 @@ public class SmsRequest {
     private String recipientPhoneNumber;
     private String messageBody;
     private SmsType smsType;
+    private Priority priority;
 }

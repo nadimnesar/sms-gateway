@@ -25,8 +25,8 @@ public class LowPriorityConsumer {
             concurrency = "2"
     )
     public void consumeLowPriority(SmsMessage message) {
-        log.info("[LOW PRIORITY CONSUMER] Received [{}] message ID: {} for {}",
-                message.getSmsType(), message.getMessageId(), message.getRecipientPhoneNumber());
+        log.info("[LOW PRIORITY CONSUMER] Received [{}] message ID: {} [Priority: {}] for {}",
+                message.getSmsType(), message.getMessageId(), message.getPriority(), message.getRecipientPhoneNumber());
         dispatcherService.dispatch(message);
     }
 }

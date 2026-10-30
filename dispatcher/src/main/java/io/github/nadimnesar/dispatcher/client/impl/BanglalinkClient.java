@@ -17,8 +17,8 @@ public class BanglalinkClient implements TelecomClient {
 
     @Override
     public boolean sendSms(SmsMessage message) {
-        log.info("[BANGLALINK-GATEWAY] Delivering SMS ID: {} to {} via Banglalink: '{}'",
-                message.getMessageId(), message.getRecipientPhoneNumber(), message.getMessageBody());
+        log.info("[BANGLALINK-GATEWAY] Delivering [{}] SMS ID: {} to {} via Banglalink: '{}'",
+                message.getPriority(), message.getMessageId(), message.getRecipientPhoneNumber(), message.getMessageBody());
         return true;
     }
 }

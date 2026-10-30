@@ -25,8 +25,8 @@ public class CriticalConsumer {
             concurrency = "4"
     )
     public void consumeAlert(SmsMessage message) {
-        log.info("[CRITICAL CONSUMER] Received ALERT message ID: {} for {}",
-                message.getMessageId(), message.getRecipientPhoneNumber());
+        log.info("[CRITICAL CONSUMER] Received ALERT message ID: {} [Priority: {}] for {}",
+                message.getMessageId(), message.getPriority(), message.getRecipientPhoneNumber());
         dispatcherService.dispatch(message);
     }
 }

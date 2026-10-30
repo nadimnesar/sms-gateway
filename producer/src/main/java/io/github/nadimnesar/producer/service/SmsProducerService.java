@@ -2,6 +2,7 @@ package io.github.nadimnesar.producer.service;
 
 import io.github.nadimnesar.common.constant.KafkaConstants;
 import io.github.nadimnesar.common.enums.DeliveryStatus;
+import io.github.nadimnesar.common.enums.Priority;
 import io.github.nadimnesar.common.enums.SmsType;
 import io.github.nadimnesar.common.enums.TelecomOperator;
 import io.github.nadimnesar.common.model.SmsMessage;
@@ -43,6 +44,7 @@ public class SmsProducerService {
         }
 
         SmsType smsType = request.getSmsType() != null ? request.getSmsType() : SmsType.INFO;
+        Priority priority = request.getPriority() != null ? request.getPriority() : Priority.fromSmsType(smsType);
         TelecomOperator operator = PhoneNumberUtil.resolveOperator(normalizedPhone);
 
         String topic = resolveTopicForType(smsType);
@@ -53,6 +55,7 @@ public class SmsProducerService {
                 .recipientPhoneNumber(normalizedPhone)
                 .messageBody(request.getMessageBody())
                 .smsType(smsType)
+                .priority(priority)
                 .operator(operator)
                 .status(DeliveryStatus.PENDING)
                 .createdAt(Instant.now())
@@ -61,8 +64,8 @@ public class SmsProducerService {
         // Persist message record in PostgreSQL database via Spring Data JPA
         smsRepository.save(SmsMessageEntity.fromSmsMessage(message));
 
-        log.info("Publishing SMS [{}] of type [{}] to topic [{}] for recipient [{}] ({})",
-                messageId, smsType, topic, normalizedPhone, operator);
+        log.info("Publishing SMS [{}] of type [{}] (Priority: [{}]) to topic [{}] for recipient [{}] ({})",
+                messageId, smsType, priority, topic, normalizedPhone, operator);
 
         // Use recipient phone number as the partition key to guarantee FIFO ordering per recipient
         kafkaTemplate.send(topic, normalizedPhone, message);

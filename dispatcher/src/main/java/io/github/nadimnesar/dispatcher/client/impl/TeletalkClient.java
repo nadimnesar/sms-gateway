@@ -17,8 +17,8 @@ public class TeletalkClient implements TelecomClient {
 
     @Override
     public boolean sendSms(SmsMessage message) {
-        log.info("[TELETALK-GATEWAY] Delivering SMS ID: {} to {} via Teletalk: '{}'",
-                message.getMessageId(), message.getRecipientPhoneNumber(), message.getMessageBody());
+        log.info("[TELETALK-GATEWAY] Delivering [{}] SMS ID: {} to {} via Teletalk: '{}'",
+                message.getPriority(), message.getMessageId(), message.getRecipientPhoneNumber(), message.getMessageBody());
         return true;
     }
 }

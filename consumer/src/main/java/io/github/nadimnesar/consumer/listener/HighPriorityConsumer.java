@@ -25,8 +25,8 @@ public class HighPriorityConsumer {
             concurrency = "3"
     )
     public void consumeOtp(SmsMessage message) {
-        log.info("[HIGH PRIORITY CONSUMER] Received OTP message ID: {} for {}",
-                message.getMessageId(), message.getRecipientPhoneNumber());
+        log.info("[HIGH PRIORITY CONSUMER] Received OTP message ID: {} [Priority: {}] for {}",
+                message.getMessageId(), message.getPriority(), message.getRecipientPhoneNumber());
         dispatcherService.dispatch(message);
     }
 }

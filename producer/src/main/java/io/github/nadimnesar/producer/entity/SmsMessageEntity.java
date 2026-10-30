@@ -1,6 +1,7 @@
 package io.github.nadimnesar.producer.entity;
 
 import io.github.nadimnesar.common.enums.DeliveryStatus;
+import io.github.nadimnesar.common.enums.Priority;
 import io.github.nadimnesar.common.enums.SmsType;
 import io.github.nadimnesar.common.enums.TelecomOperator;
 import io.github.nadimnesar.common.model.SmsMessage;
@@ -35,6 +36,10 @@ public class SmsMessageEntity {
     private SmsType smsType;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "priority", nullable = false, length = 32)
+    private Priority priority;
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "operator", nullable = false, length = 32)
     private TelecomOperator operator;
 
@@ -61,6 +66,7 @@ public class SmsMessageEntity {
                 .recipientPhoneNumber(this.recipientPhoneNumber)
                 .messageBody(this.messageBody)
                 .smsType(this.smsType)
+                .priority(this.priority)
                 .operator(this.operator)
                 .status(this.status)
                 .createdAt(this.createdAt)
@@ -78,6 +84,7 @@ public class SmsMessageEntity {
                 .recipientPhoneNumber(message.getRecipientPhoneNumber())
                 .messageBody(message.getMessageBody())
                 .smsType(message.getSmsType())
+                .priority(message.getPriority())
                 .operator(message.getOperator())
                 .status(message.getStatus())
                 .createdAt(message.getCreatedAt())
